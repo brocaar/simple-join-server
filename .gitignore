@@ -4,3 +4,4 @@
 
 !.gitignore
 !Cargo.toml
+!Cross.toml
