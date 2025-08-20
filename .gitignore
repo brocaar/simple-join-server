@@ -5,3 +5,4 @@
 !.gitignore
 !Cargo.toml
 !Cross.toml
+!simple-join-server.toml

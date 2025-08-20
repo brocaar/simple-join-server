@@ -1,0 +1,50 @@
+# Logging settings.
+[logging]
+
+  # Log level.
+  #
+  # Valid options are: debug, info, warn, error
+  level = "info"
+
+
+# PostgreSQL settings.
+[postgresql]
+
+  # PostgreSQL DSN.
+  #
+  # Format example: postgres://<USERNAME>:<PASSWORD>@<HOSTNAME>/<DATABASE>?sslmode=<SSLMODE>.
+  #
+  # SSL mode options:
+  #  * disable - Do not use TLS
+  #  * prefer - Attempt to connect with TLS but allow sessions without
+  #  * require - Require the use of TLS
+  dsn = "postgresql://simple_js:simple_js@localhost/simple_js?sslmode=disable"
+
+  # Max open connections.
+  #
+  # This sets the max. number of open connections that are allowed in the
+  # PostgreSQL connection pool.
+  max_open_connections = 10
+
+  # CA certificate (optional).
+  #
+  # Set this to the path of the CA certificate in case you are using TLS and
+  # the server-certificate is not signed by a CA in the platform certificate
+  # store.
+  ca_cert = ""
+
+
+# Join Server API settings.
+[api]
+
+  # Interface bind.
+  #
+  # This must be in the form of 'interface:port'.
+  bind = "0.0.0.0:8070"
+
+  # TLS certificate (optional).
+  tls_cert = ""
+
+  # TLS key (optional).
+  tls_key = ""
+
