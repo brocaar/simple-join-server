@@ -26,3 +26,59 @@ and responds with a `JoinAns`.
 The Simple Join Server does not provide a web-interface for managing
 network-servers and devices. The intention of this project is to provide
 a skeleton that can be integrated with other interfaces.
+
+## Building from source
+
+### Requirements
+
+Building ChirpStack MQTT Forwarder requires:
+
+* [Nix](https://nixos.org/download.html) (recommended) and
+* [Docker](https://www.docker.com/)
+
+#### Nix
+
+Nix is used for setting up the development environment which is used for local
+development and for creating the binaries. Alternatively, you could install the
+dependencies listed in `shell.nix` by hand.
+
+#### Docker
+
+Docker is used by [cross-rs](https://github.com/cross-rs/cross) for cross-compiling,
+as well as some of the `make` commands.
+
+### Starting the development shell
+
+Run the following command to start the development shell:
+
+```bash
+nix-shell
+```
+
+#### Run tests
+
+Execute the following command to run the tests:
+
+```bash
+make test
+```
+
+### Building binaries
+
+Execute the following commands to build the binary:
+
+```bash
+# Only build binaries
+make build
+```
+
+Compiled binaries are stored in the `./target` folder.
+
+## Using the binary
+
+See the output of `simple-join-server --help` for usage information.
+
+## License
+
+Simple Join Server is distributed under the MIT license. See also
+[LICENSE](https://github.com/brocaar/simple-join-server/blob/master/LICENSE).
