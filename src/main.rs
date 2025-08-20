@@ -51,7 +51,7 @@ async fn main() -> Result<()> {
     }
 
     let filter = filter::Targets::new().with_targets(vec![(
-        "chirpstack_join_server",
+        "simple_join_server",
         Level::from_str(&conf.logging.level).unwrap(),
     )]);
 
