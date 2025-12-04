@@ -8,10 +8,12 @@ pkgs.mkShell {
     pkgs.cacert
     pkgs.rustup
     pkgs.postgresql             # psql binary + library for diesel
-    pkgs.cargo-cross            # cross-compiling
     pkgs.diesel-cli             # diesel cli
     pkgs.jq                     # json query cli tool
   ];
+  shellHook = ''
+    export PATH=$PATH:~/.cargo/bin
+  '';
   DOCKER_BUILDKIT = "1";
   NIX_STORE = "/nix/store";
 }

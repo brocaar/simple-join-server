@@ -55,6 +55,14 @@ Run the following command to start the development shell:
 nix-shell
 ```
 
+#### Dependencies
+
+Install the following command to install the development dependencies:
+
+```bash
+make dev-dependencies
+```
+
 #### Run tests
 
 Execute the following command to run the tests:
