@@ -9,7 +9,7 @@ use axum::{
     Router,
 };
 use axum_server::tls_rustls::RustlsConfig;
-use tracing::{info, span, warn, Instrument, Level};
+use tracing::{debug, info, span, warn, Instrument, Level};
 
 use crate::config::Configuration;
 use crate::errors::Error;
@@ -54,13 +54,12 @@ async fn handle_request(headers: HeaderMap, b: Bytes) -> Response {
     let b: Vec<u8> = b.into();
 
     let auth_token = match headers.get(AUTHORIZATION) {
-        Some(v) => v,
+        Some(v) => v.to_str().unwrap_or_default(),
         None => {
-            return (StatusCode::UNAUTHORIZED, "Authorization header is missing").into_response();
+            debug!("Request does not contain Authorization header, assuming empty token");
+            ""
         }
-    }
-    .to_str()
-    .unwrap_or_default();
+    };
     let auth_token = auth_token.replace("Bearer", "");
     let auth_token = auth_token.trim();
 
@@ -88,6 +87,8 @@ async fn _handle_request(
     b: Vec<u8>,
     ns: &storage::NetworkServer,
 ) -> Response {
+    info!("Handling request");
+
     let res = match bp.message_type {
         structs::MessageType::JoinReq => handle_join_req(b, ns).await,
         _ => Ok(Json(err_to_response(
@@ -99,7 +100,10 @@ async fn _handle_request(
 
     match res {
         Ok(v) => v,
-        Err(e) => Json(err_to_response(e, &bp)).into_response(),
+        Err(e) => {
+            warn!(error = %e, "Failed to handle request");
+            Json(err_to_response(e, &bp)).into_response()
+        }
     }
 }
 
