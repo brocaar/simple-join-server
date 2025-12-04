@@ -7,22 +7,22 @@
   anyhow = "1.0"
   thiserror = "2.0"
   clap = { version = "4.5", features = ["derive"] }
-  tokio = { version = "1.46", features = ["macros", "rt-multi-thread", "fs"] }
+  tokio = { version = "1.48", features = ["macros", "rt-multi-thread", "fs"] }
   tokio-postgres = { version = "0.7" }
   tokio-postgres-rustls = { version = "0.13" }
   aes = "0.8"
 
-  uuid = { version = "1.17", default-features = false, features = [
+  uuid = { version = "1.19", default-features = false, features = [
     "v4",
     "serde",
   ] }
-  diesel = { version = "2.2", features = [
+  diesel = { version = "2.3", features = [
     "postgres_backend",
     "uuid",
     "serde_json",
   ] }
-  diesel_migrations = { version = "2.2" }
-  diesel-async = { version = "0.5", features = [
+  diesel_migrations = { version = "2.3" }
+  diesel-async = { version = "0.7", features = [
     "deadpool",
     "postgres",
     "async-connection-wrapper",
@@ -35,7 +35,7 @@
     "crypto",
     "postgres",
   ] }
-  toml = "0.8"
+  toml = "0.9"
   tracing = "0.1"
   tracing-subscriber = "0.3"
   axum = "0.8"
